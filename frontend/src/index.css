@@ -192,7 +192,7 @@ body {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-/* Global High-Contrast Dark PDF Print Media Rules */
+/* Universal High-Contrast Printable PDF Rules */
 @media print {
   nav, footer, header, .no-print {
     display: none !important;
@@ -205,40 +205,49 @@ body {
   }
 
   html, body {
-    background: #000000 !important;
-    color: #ffffff !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
   }
 
-  .hm-card {
-    background: #141414 !important;
-    border: 1px solid #333333 !important;
-    color: #ffffff !important;
+  .hm-card, div {
+    background: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
     box-shadow: none !important;
   }
 
-  p, span, h1, h2, h3, h4, li, div, label, td, th {
-    color: #ffffff !important;
+  h1, h2, h3, h4, h5, h6 {
+    color: #020617 !important;
+    font-weight: 800 !important;
+  }
+
+  p, span, li, label, td, th, div {
+    color: #1e293b !important;
   }
 
   strong {
-    color: #10B981 !important;
+    color: #047857 !important;
+    font-weight: 700 !important;
   }
 
   .hm-badge-emerald, .hm-badge-success {
-    background: #10B981 !important;
-    color: #000000 !important;
+    background: #d1fae5 !important;
+    color: #047857 !important;
+    border: 1px solid #059669 !important;
     font-weight: 800 !important;
   }
 
   .hm-badge-warning {
-    background: #F59E0B !important;
-    color: #000000 !important;
+    background: #fef3c7 !important;
+    color: #b45309 !important;
+    border: 1px solid #d97706 !important;
     font-weight: 800 !important;
   }
 
   .hm-badge-error {
-    background: #EF4444 !important;
-    color: #ffffff !important;
+    background: #fee2e2 !important;
+    color: #b91c1c !important;
+    border: 1px solid #dc2626 !important;
     font-weight: 800 !important;
   }
 }
