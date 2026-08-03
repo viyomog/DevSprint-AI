@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { apiRequest } from '../api/client';
-import { Brain, Send, Mic, MicOff, Award, Building2, Code2, MessageSquare, Loader2, Sparkles, SkipForward, AlertCircle, CheckCircle2, AlertTriangle, Lightbulb, Zap } from 'lucide-react';
+import {
+  Brain, Send, Mic, MicOff, Award, Building2, Code2, MessageSquare, Loader2,
+  Sparkles, SkipForward, AlertCircle, CheckCircle2, AlertTriangle, Lightbulb, Zap,
+  Volume2, VolumeX, Clock
+} from 'lucide-react';
 import { CodeEditor } from '../components/CodeEditor';
 import { MarkdownView } from '../components/MarkdownView';
+import { useVoice } from '../hooks/useVoice';
 
 interface QNAItem {
   question_number: number;
@@ -45,8 +50,48 @@ export const InterviewSessionPage: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [lastEval, setLastEval] = useState<any | null>(null);
   const [codeEval, setCodeEval] = useState<any | null>(null);
-  const [isRecording, setIsRecording] = useState(false);
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
+  const [timerSeconds, setTimerSeconds] = useState(60);
   const [error, setError] = useState('');
+
+  const {
+    isListening,
+    transcript,
+    isSpeaking,
+    startListening,
+    stopListening,
+    speakText,
+    stopSpeaking
+  } = useVoice();
+
+  // Sync mic transcript into text answer box
+  useEffect(() => {
+    if (transcript) {
+      setCurrentAnswer(prev => prev ? `${prev} ${transcript}` : transcript);
+    }
+  }, [transcript]);
+
+  // Live 60-Second Countdown Timer
+  useEffect(() => {
+    if (loading || submitting || !session) return;
+
+    setTimerSeconds(60);
+    const interval = setInterval(() => {
+      setTimerSeconds(prev => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [session?.current_question_index, loading, submitting]);
+
+  // Auto-speak AI Interview Question when question updates
+  useEffect(() => {
+    if (session && voiceEnabled) {
+      const activeQ = session.qnas.find(q => q.question_number === session.current_question_index);
+      if (activeQ && activeQ.question) {
+        speakText(activeQ.question);
+      }
+    }
+  }, [session?.current_question_index]);
 
   useEffect(() => {
     async function loadSession() {
@@ -68,9 +113,25 @@ export const InterviewSessionPage: React.FC = () => {
     loadSession();
   }, [id]);
 
+  const toggleVoiceMode = () => {
+    if (isSpeaking) {
+      stopSpeaking();
+      setVoiceEnabled(false);
+    } else {
+      setVoiceEnabled(true);
+      const activeQ = session?.qnas.find(q => q.question_number === session.current_question_index);
+      if (activeQ?.question) {
+        speakText(activeQ.question);
+      }
+    }
+  };
+
   const handleSubmitAnswer = async (e?: React.FormEvent, isSkipped: boolean = false) => {
     if (e) e.preventDefault();
     if (!session) return;
+
+    stopSpeaking();
+    if (isListening) stopListening();
 
     const answerContent = isSkipped
       ? "Skipped by candidate"
@@ -131,7 +192,7 @@ export const InterviewSessionPage: React.FC = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '60vh', flexDirection: 'column', gap: '1rem' }}>
         <Loader2 size={36} color="var(--primary)" style={{ animation: 'spin 1s linear infinite' }} />
-        <span style={{ color: 'var(--text-secondary)' }}>Initializing AI Interviewer & Company Persona...</span>
+        <span style={{ color: 'var(--text-secondary)' }}>Initializing AI Voice Interviewer & Company Persona...</span>
       </div>
     );
   }
@@ -181,6 +242,22 @@ export const InterviewSessionPage: React.FC = () => {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          {/* Live Response Timer */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', background: 'var(--bg-secondary)', padding: '0.35rem 0.75rem', borderRadius: '20px', border: '1px solid var(--border-color)', fontSize: '0.82rem', color: timerSeconds < 15 ? 'var(--error)' : 'var(--text-main)', fontWeight: 700 }}>
+            <Clock size={15} color={timerSeconds < 15 ? 'var(--error)' : 'var(--primary)'} />
+            <span>00:{timerSeconds < 10 ? `0${timerSeconds}` : timerSeconds}</span>
+          </div>
+
+          {/* AI Voice Toggle Button */}
+          <button
+            onClick={toggleVoiceMode}
+            className="hm-btn-secondary"
+            style={{ padding: '0.35rem 0.75rem', fontSize: '0.82rem', gap: '0.4rem', borderRadius: '20px' }}
+          >
+            {isSpeaking || voiceEnabled ? <Volume2 size={15} color="var(--primary)" /> : <VolumeX size={15} color="var(--text-secondary)" />}
+            {isSpeaking ? 'AI Speaking...' : (voiceEnabled ? 'Voice On' : 'Muted')}
+          </button>
+
           <span className="hm-badge hm-badge-emerald">
             Question {session.current_question_index} of {session.total_questions}
           </span>
@@ -222,7 +299,7 @@ export const InterviewSessionPage: React.FC = () => {
           </div>
 
           <div className="hm-badge hm-badge-emerald" style={{ gap: '0.3rem' }}>
-            <Sparkles size={12} /> Multi-Turn Context Memory
+            <Sparkles size={12} /> Real-Time Voice Engine
           </div>
         </div>
 
@@ -247,7 +324,7 @@ export const InterviewSessionPage: React.FC = () => {
 
       {/* Response Workspace */}
       <form onSubmit={(e) => handleSubmitAnswer(e, false)} className="hm-card" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', padding: '1.75rem' }}>
-        {/* Mode Tabs */}
+        {/* Mode Tabs & Voice Mic Input */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.75rem' }}>
           <div style={{ display: 'flex', gap: '0.75rem' }}>
             <button
@@ -291,23 +368,30 @@ export const InterviewSessionPage: React.FC = () => {
             </button>
           </div>
 
+          {/* Speech-To-Text Mic Toggle Button */}
           <button
             type="button"
-            onClick={() => setIsRecording(!isRecording)}
+            onClick={() => isListening ? stopListening() : startListening()}
             style={{
-              background: isRecording ? 'rgba(239, 68, 68, 0.15)' : 'var(--bg-secondary)',
-              border: `1px solid ${isRecording ? 'var(--error)' : 'var(--border-color)'}`,
-              color: isRecording ? 'var(--error)' : 'var(--text-secondary)',
-              padding: '0.35rem 0.75rem',
+              background: isListening ? 'rgba(239, 68, 68, 0.2)' : 'var(--bg-secondary)',
+              border: `1px solid ${isListening ? 'var(--error)' : 'var(--border-color)'}`,
+              color: isListening ? 'var(--error)' : 'var(--text-secondary)',
+              padding: '0.4rem 0.95rem',
               borderRadius: '20px',
-              fontSize: '0.8rem',
+              fontSize: '0.82rem',
+              fontWeight: 700,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.4rem'
+              gap: '0.4rem',
+              transition: 'all 0.2s'
             }}
           >
-            {isRecording ? <><MicOff size={14} /> Listening (Phase 4)...</> : <><Mic size={14} /> Voice Input</>}
+            {isListening ? (
+              <><MicOff size={15} color="var(--error)" /> Recording Mic Input...</>
+            ) : (
+              <><Mic size={15} color="var(--primary)" /> Speak Answer (Mic)</>
+            )}
           </button>
         </div>
 
@@ -317,7 +401,7 @@ export const InterviewSessionPage: React.FC = () => {
             required={activeTab === 'text'}
             rows={6}
             className="hm-input"
-            placeholder="Type your structured answer here. Include concepts, trade-offs, and examples where applicable..."
+            placeholder="Type or click 'Speak Answer' to record your response. Include your approach, trade-offs, and examples..."
             value={currentAnswer}
             onChange={(e) => setCurrentAnswer(e.target.value)}
             style={{ resize: 'vertical', lineHeight: 1.6 }}
