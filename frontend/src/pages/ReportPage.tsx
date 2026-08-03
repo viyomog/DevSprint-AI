@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { apiRequest } from '../api/client';
 import { Award, Download, CheckCircle, AlertTriangle, ArrowLeft, Building2, ChevronDown, ChevronUp, Printer } from 'lucide-react';
+import { CertificateCard } from '../components/CertificateCard';
 
 interface CategoryScore {
   name: string;
@@ -148,7 +149,17 @@ export const ReportPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Category Breakdown Grid */}
+      {/* Verified AI Placement Certificate Card */}
+      {report.overall_score >= 6.5 && (
+        <CertificateCard
+          candidateName={report.role}
+          company={report.company}
+          role={report.role}
+          score={report.overall_score}
+          date={new Date(report.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+          certificateId={`HM-CERT-${report.interview_id}982-${report.company.substring(0, 3).toUpperCase()}`}
+        />
+      )}
       <div className="hm-card">
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '1.25rem' }}>Category Evaluation Metrics</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.25rem' }}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiRequest } from '../api/client';
-import { Building2, Briefcase, Cpu, PlayCircle, Sliders, AlertCircle, Code2, Globe } from 'lucide-react';
+import { Building2, Briefcase, Cpu, PlayCircle, Sliders, AlertCircle, Code2, Globe, Target, Sparkles } from 'lucide-react';
 
 export const CreateInterviewPage: React.FC = () => {
   const navigate = useNavigate();
@@ -12,6 +12,7 @@ export const CreateInterviewPage: React.FC = () => {
   const [experienceLevel, setExperienceLevel] = useState('Fresher (0-1 yrs)');
   const [difficulty, setDifficulty] = useState('Medium');
   const [interviewType, setInterviewType] = useState('Technical');
+  const [selectedFocusAreas, setSelectedFocusAreas] = useState<string[]>(['Data Structures & Algorithms', 'System Design']);
   const [totalQuestions, setTotalQuestions] = useState(5);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -39,6 +40,23 @@ export const CreateInterviewPage: React.FC = () => {
     'Full Stack Developer',
     'Data Analyst'
   ];
+
+  const focusAreasList = [
+    'Data Structures & Algorithms',
+    'System Design & Architecture',
+    'SQL & Database Systems',
+    'Concurrency & OS Basics',
+    'Amazon Leadership Principles',
+    'Clean Code & OOP Concepts'
+  ];
+
+  const toggleFocusArea = (area: string) => {
+    if (selectedFocusAreas.includes(area)) {
+      setSelectedFocusAreas(selectedFocusAreas.filter(a => a !== area));
+    } else {
+      setSelectedFocusAreas([...selectedFocusAreas, area]);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,8 +89,10 @@ export const CreateInterviewPage: React.FC = () => {
   return (
     <div style={{ maxWidth: '850px', margin: '0 auto', padding: '2rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       <div>
-        <div className="hm-badge hm-badge-emerald" style={{ marginBottom: '0.5rem' }}>Session Configuration</div>
-        <h1 style={{ fontSize: '2rem', fontWeight: 800 }}>Create Mock Interview</h1>
+        <div className="hm-badge hm-badge-emerald" style={{ marginBottom: '0.5rem' }}>
+          <Sparkles size={12} /> Custom Session Configuration
+        </div>
+        <h1 style={{ fontSize: '2rem', fontWeight: 800 }}>Create AI Mock Interview</h1>
         <p style={{ color: 'var(--text-secondary)', marginTop: '0.3rem' }}>
           Tailor your AI interview parameters to match target company standards.
         </p>
@@ -125,6 +145,39 @@ export const CreateInterviewPage: React.FC = () => {
               style={{ marginTop: '0.75rem' }}
             />
           )}
+        </div>
+
+        {/* Custom Technical Focus Areas */}
+        <div>
+          <label className="hm-label">Targeted Technical Focus Areas</label>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginTop: '0.4rem' }}>
+            {focusAreasList.map((area) => {
+              const selected = selectedFocusAreas.includes(area);
+              return (
+                <button
+                  key={area}
+                  type="button"
+                  onClick={() => toggleFocusArea(area)}
+                  style={{
+                    background: selected ? 'rgba(16, 185, 129, 0.15)' : 'var(--bg-secondary)',
+                    border: `1px solid ${selected ? 'var(--primary)' : 'var(--border-color)'}`,
+                    color: selected ? 'var(--primary)' : 'var(--text-secondary)',
+                    padding: '0.4rem 0.85rem',
+                    borderRadius: '20px',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  <Target size={12} color={selected ? 'var(--primary)' : 'var(--text-secondary)'} /> {area}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Role Selection */}
