@@ -7,6 +7,7 @@ import { LandingPage } from './pages/LandingPage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { DashboardPage } from './pages/DashboardPage';
+import { ProfilePage } from './pages/ProfilePage';
 import { ResumeUploadPage } from './pages/ResumeUploadPage';
 import { CreateInterviewPage } from './pages/CreateInterviewPage';
 import { InterviewSessionPage } from './pages/InterviewSessionPage';
@@ -46,6 +47,7 @@ export const AppContent: React.FC = () => {
 
           {/* Protected Candidate Routes */}
           <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           <Route path="/resume" element={<ProtectedRoute><ResumeUploadPage /></ProtectedRoute>} />
           <Route path="/create-interview" element={<ProtectedRoute><CreateInterviewPage /></ProtectedRoute>} />
           <Route path="/interview/:id" element={<ProtectedRoute><InterviewSessionPage /></ProtectedRoute>} />

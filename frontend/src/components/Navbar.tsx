@@ -94,10 +94,23 @@ export const Navbar: React.FC = () => {
 
             {/* Profile & Logout */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginLeft: '0.75rem', paddingLeft: '0.75rem', borderLeft: '1px solid var(--border-color)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: 'var(--text-main)', background: 'var(--bg-card)', padding: '0.35rem 0.75rem', borderRadius: '20px', border: '1px solid var(--border-color)' }}>
+              <Link to="/profile" style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                fontSize: '0.85rem',
+                color: isActive('/profile') ? 'var(--primary)' : 'var(--text-main)',
+                background: isActive('/profile') ? 'rgba(16, 185, 129, 0.15)' : 'var(--bg-card)',
+                padding: '0.35rem 0.75rem',
+                borderRadius: '20px',
+                border: `1px solid ${isActive('/profile') ? 'var(--primary)' : 'var(--border-color)'}`,
+                textDecoration: 'none',
+                fontWeight: 600,
+                transition: 'all 0.2s'
+              }}>
                 <UserIcon size={14} color="var(--primary)" />
                 {user.full_name.split(' ')[0]}
-              </div>
+              </Link>
 
               <button onClick={handleLogout} className="hm-btn-secondary" style={{ padding: '0.4rem 0.75rem', fontSize: '0.85rem' }}>
                 <LogOut size={14} /> Exit
