@@ -12,6 +12,10 @@ DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./hiremind.db")
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
+# Automatic IPv4 Pooler conversion for Render cloud compatibility
+if "supabase.co:5432" in DATABASE_URL:
+    DATABASE_URL = DATABASE_URL.replace("supabase.co:5432", "supabase.co:6543")
+
 # Create engine for SQLite or PostgreSQL/MySQL
 if DATABASE_URL.startswith("sqlite"):
     engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
