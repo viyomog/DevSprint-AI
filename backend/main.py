@@ -7,22 +7,23 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from database import engine, Base
+from database import engine, Base, init_db
 import routers.auth as auth_router
 import routers.resume as resume_router
 import routers.interviews as interviews_router
 
-# Create database tables automatically on startup
-Base.metadata.create_all(bind=engine)
-
 app = FastAPI(
     title="HireMind API",
-    description="AI Interview Simulator Backend API with Rate Limiting & Security Protection",
+    description="AI Interview Simulator Backend API with Supabase PostgreSQL & Rate Limiting",
     version="1.0.0"
 )
 
+# Initialize database tables asynchronously on app startup
+@app.on_event("startup")
+def on_startup():
+    init_db()
+
 # --- Rate Limiting In-Memory Store ---
-# Limits requests to 120 per minute per IP address
 RATE_LIMIT_WINDOW = 60  # seconds
 MAX_REQUESTS_PER_WINDOW = 120  # max requests per minute
 client_request_history = defaultdict(list)
@@ -56,12 +57,12 @@ async def rate_limit_and_security_middleware(request: Request, call_next):
 
 
 # Configure CORS origins for Frontend communication
-cors_origins_str = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
+cors_origins_str = os.getenv("CORS_ORIGINS", "*")
 origins = [origin.strip() for origin in cors_origins_str.split(",") if origin.strip()]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=origins if origins != ["*"] else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -79,6 +80,7 @@ def root():
         "app": "HireMind AI Interview Simulator API",
         "version": "1.0.0",
         "docs": "/docs",
+        "database": "Supabase PostgreSQL",
         "rate_limiting": "Enabled (120 req/min)",
         "max_file_upload": "5 MB"
     }
