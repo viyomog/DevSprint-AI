@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { apiRequest } from '../api/client';
-import { Award, Download, CheckCircle, AlertTriangle, ArrowLeft, Building2, CheckCircle2, ChevronDown, ChevronUp, FileText } from 'lucide-react';
+import { Award, Download, CheckCircle, AlertTriangle, ArrowLeft, Building2, ChevronDown, ChevronUp, Printer } from 'lucide-react';
 
 interface CategoryScore {
   name: string;
@@ -89,14 +89,34 @@ export const ReportPage: React.FC = () => {
 
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '2rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      {/* Top Header Controls */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      
+      {/* Printable CSS Media Query */}
+      <style>{`
+        @media print {
+          .no-print {
+            display: none !important;
+          }
+          body {
+            background: #ffffff !important;
+            color: #000000 !important;
+          }
+          .hm-card {
+            border: 1px solid #ccc !important;
+            box-shadow: none !important;
+            background: #ffffff !important;
+            color: #000000 !important;
+          }
+        }
+      `}</style>
+
+      {/* Top Header Controls (Hidden during print) */}
+      <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <button onClick={() => navigate('/dashboard')} className="hm-btn-secondary" style={{ padding: '0.4rem 0.85rem', fontSize: '0.85rem' }}>
           <ArrowLeft size={16} /> Dashboard
         </button>
 
-        <button onClick={handleDownloadPDF} className="hm-btn-primary" style={{ padding: '0.4rem 0.85rem', fontSize: '0.85rem' }}>
-          <Download size={16} /> Export PDF Report
+        <button onClick={handleDownloadPDF} className="hm-btn-primary" style={{ padding: '0.45rem 1.15rem', fontSize: '0.95rem', borderRadius: '10px' }}>
+          <Printer size={18} /> Download Official PDF Report
         </button>
       </div>
 

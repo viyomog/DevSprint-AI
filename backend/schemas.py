@@ -130,3 +130,25 @@ class DashboardStatsResponse(BaseModel):
     top_strengths: List[str]
     weak_areas: List[str]
     recent_interviews: List[InterviewSummaryResponse]
+
+# --- Phase 3 Analytics Schemas ---
+class ScoreTrendItem(BaseModel):
+    interview_id: int
+    company: str
+    date: str
+    score: float
+
+class CompanyReadiness(BaseModel):
+    company: str
+    readiness_percentage: int
+    total_sessions: int
+    avg_score: float
+
+class AnalyticsOverviewResponse(BaseModel):
+    total_interviews: int
+    overall_avg_score: float
+    category_scores: List[CategoryScore]
+    score_trends: List[ScoreTrendItem]
+    company_readiness: List[CompanyReadiness]
+    top_strengths: List[str]
+    weak_areas: List[str]
