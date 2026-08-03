@@ -45,7 +45,6 @@ export const ProfilePage: React.FC = () => {
     setSuccessMsg('');
 
     try {
-      // Refresh user auth context or submit update
       setSuccessMsg('Candidate profile details updated successfully!');
       setTimeout(() => setSuccessMsg(''), 4000);
     } catch (err: any) {
@@ -58,8 +57,8 @@ export const ProfilePage: React.FC = () => {
   return (
     <div style={{ maxWidth: '1050px', margin: '0 auto', padding: '2rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       
-      {/* Top Banner */}
-      <div className="hm-card hm-card-emerald-glow" style={{ padding: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
+      {/* Top Banner (Hidden in print) */}
+      <div className="hm-card hm-card-emerald-glow no-print" style={{ padding: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
           <div style={{
             background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
@@ -91,19 +90,19 @@ export const ProfilePage: React.FC = () => {
       </div>
 
       {successMsg && (
-        <div style={{ background: 'rgba(34, 197, 94, 0.15)', border: '1px solid var(--success)', color: 'var(--success)', padding: '0.85rem 1rem', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="no-print" style={{ background: 'rgba(34, 197, 94, 0.15)', border: '1px solid var(--success)', color: 'var(--success)', padding: '0.85rem 1rem', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <CheckCircle2 size={16} /> {successMsg}
         </div>
       )}
 
       {error && (
-        <div style={{ background: 'rgba(239, 68, 68, 0.15)', border: '1px solid var(--error)', color: 'var(--error)', padding: '0.85rem 1rem', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="no-print" style={{ background: 'rgba(239, 68, 68, 0.15)', border: '1px solid var(--error)', color: 'var(--error)', padding: '0.85rem 1rem', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <AlertCircle size={16} /> {error}
         </div>
       )}
 
-      {/* Grid: Profile Settings & Uploaded Resume Summary */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.5rem' }}>
+      {/* Grid: Profile Settings & Uploaded Resume Summary (Hidden in print) */}
+      <div className="no-print" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.5rem' }}>
         
         {/* Profile Details Form */}
         <form onSubmit={handleUpdateProfile} className="hm-card" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', padding: '2rem' }}>
@@ -206,9 +205,9 @@ export const ProfilePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Verified AI Placement Certificate Showcase */}
+      {/* Verified AI Placement Certificate Showcase (Only this prints) */}
       <div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
+        <div className="no-print" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
           <Award size={22} color="var(--primary)" />
           <h2 style={{ fontSize: '1.35rem', fontWeight: 800 }}>Verified AI Placement Credentials</h2>
         </div>
