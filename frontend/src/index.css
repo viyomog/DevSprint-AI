@@ -192,15 +192,53 @@ body {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-/* Global Print Media Isolation */
+/* Global High-Contrast Dark PDF Print Media Rules */
 @media print {
   nav, footer, header, .no-print {
     display: none !important;
   }
-  body {
-    background: #0d0d0d !important;
-    color: #ffffff !important;
+
+  * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html, body {
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  .hm-card {
+    background: #141414 !important;
+    border: 1px solid #333333 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  p, span, h1, h2, h3, h4, li, div, label, td, th {
+    color: #ffffff !important;
+  }
+
+  strong {
+    color: #10B981 !important;
+  }
+
+  .hm-badge-emerald, .hm-badge-success {
+    background: #10B981 !important;
+    color: #000000 !important;
+    font-weight: 800 !important;
+  }
+
+  .hm-badge-warning {
+    background: #F59E0B !important;
+    color: #000000 !important;
+    font-weight: 800 !important;
+  }
+
+  .hm-badge-error {
+    background: #EF4444 !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
   }
 }
