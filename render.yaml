@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: hiremind-backend
+    name: devsprint-backend
     env: python
     region: singapore
     buildCommand: pip install -r backend/requirements.txt

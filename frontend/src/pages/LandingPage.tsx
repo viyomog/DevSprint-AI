@@ -25,16 +25,16 @@ export const LandingPage: React.FC = () => {
 
   const faqs = [
     {
-      q: 'How does HireMind generate realistic company interview questions?',
-      a: 'HireMind uses custom-engineered AI prompt personas (Google Bar Raisers, Amazon Leadership Evaluators, Microsoft Architects) powered by Google Gemini 3.1 LLM models. Questions reference your uploaded resume and adapt dynamically to your prior answers with multi-turn memory.'
+      q: 'How does DevSprint AI generate realistic company interview questions?',
+      a: 'DevSprint AI uses custom-engineered AI prompt personas (Google Bar Raisers, Amazon Leadership Evaluators, Microsoft Architects) powered by Google Gemini 3.1 LLM models. Questions reference your uploaded resume and adapt dynamically to your prior answers with multi-turn memory.'
     },
     {
       q: 'Is candidate resume data kept private and secure?',
-      a: 'Yes! HireMind enforces strict privacy-first architecture. Passwords are stored bcrypt-encrypted. Uploaded resumes and interview responses are processed securely via SSL to Supabase PostgreSQL and Google Gemini API for real-time scoring. We NEVER sell or monetize candidate data.'
+      a: 'Yes! DevSprint AI enforces strict privacy-first architecture. Passwords are stored bcrypt-encrypted. Uploaded resumes and interview responses are processed securely via SSL to Supabase PostgreSQL and Google Gemini API for real-time scoring. We NEVER sell or monetize candidate data.'
     },
     {
-      q: 'Does HireMind evaluate actual programming code solutions?',
-      a: 'Yes! HireMind includes a built-in Live Code Editor supporting Python, JavaScript, Java, and C++. Submissions are analyzed for logical correctness, time complexity (e.g. O(N)), space complexity, and edge case handling.'
+      q: 'Does DevSprint AI evaluate actual programming code solutions?',
+      a: 'Yes! DevSprint AI includes a built-in Live Code Editor supporting Python, JavaScript, Java, and C++. Submissions are analyzed for logical correctness, time complexity (e.g. O(N)), space complexity, and edge case handling.'
     },
     {
       q: 'Can I practice skipping difficult questions?',
@@ -77,7 +77,7 @@ export const LandingPage: React.FC = () => {
             marginBottom: '1.75rem',
             boxShadow: '0 0 20px rgba(16, 185, 129, 0.15)'
           }}>
-            <Sparkles size={15} /> Introducing HireMind 2.0 • AI Company Personas & Live Code Engine
+            <Sparkles size={15} /> Introducing DevSprint AI 2.0 • AI Company Personas & Live Code Engine
           </div>
 
           {/* Main Hero Headline */}
@@ -151,7 +151,7 @@ export const LandingPage: React.FC = () => {
                 <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#F59E0B' }} />
                 <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#10B981' }} />
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginLeft: '0.5rem', fontFamily: 'var(--font-mono)' }}>
-                  hiremind.ai/interview/live-session
+                  devsprint.ai/interview/live-session
                 </span>
               </div>
 
@@ -327,7 +327,7 @@ export const LandingPage: React.FC = () => {
       <div style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)', padding: '5rem 1.5rem' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
           <div className="hm-badge hm-badge-emerald" style={{ marginBottom: '0.5rem' }}>Interactive Demo</div>
-          <h2 style={{ fontSize: '2.25rem', fontWeight: 800 }}>Experience HireMind Live Workspace</h2>
+          <h2 style={{ fontSize: '2.25rem', fontWeight: 800 }}>Experience DevSprint Live Workspace</h2>
           <p style={{ color: 'var(--text-secondary)', marginTop: '0.3rem', marginBottom: '2rem' }}>
             Toggle between Coding Round and Behavioral interview modes below.
           </p>
@@ -398,9 +398,9 @@ export const LandingPage: React.FC = () => {
       {/* Comparison Table Section */}
       <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '5rem 1.5rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 style={{ fontSize: '2.25rem', fontWeight: 800 }}>Why Candidates Choose HireMind</h2>
+          <h2 style={{ fontSize: '2.25rem', fontWeight: 800 }}>Why Candidates Choose DevSprint AI</h2>
           <p style={{ color: 'var(--text-secondary)', marginTop: '0.3rem' }}>
-            Compare HireMind against traditional solo practice tools.
+            Compare DevSprint AI against traditional solo practice tools.
           </p>
         </div>
 
@@ -409,7 +409,7 @@ export const LandingPage: React.FC = () => {
             <thead>
               <tr style={{ background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-color)' }}>
                 <th style={{ padding: '1.2rem 1.5rem' }}>Feature Capability</th>
-                <th style={{ padding: '1.2rem 1.5rem', color: 'var(--primary)', fontWeight: 800 }}>HireMind AI 2.0</th>
+                <th style={{ padding: '1.2rem 1.5rem', color: 'var(--primary)', fontWeight: 800 }}>DevSprint AI 2.0</th>
                 <th style={{ padding: '1.2rem 1.5rem', color: 'var(--text-secondary)' }}>Solo LeetCode</th>
                 <th style={{ padding: '1.2rem 1.5rem', color: 'var(--text-secondary)' }}>Generic AI Chatbots</th>
               </tr>
@@ -450,7 +450,7 @@ export const LandingPage: React.FC = () => {
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 style={{ fontSize: '2.25rem', fontWeight: 800 }}>Frequently Asked Questions</h2>
             <p style={{ color: 'var(--text-secondary)', marginTop: '0.3rem' }}>
-              Everything you need to know about HireMind AI.
+              Everything you need to know about DevSprint AI.
             </p>
           </div>
 

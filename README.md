@@ -1,6 +1,6 @@
-# 🧠 HireMind — AI Mock Interview & Code Evaluation Simulator
+# ⚡ DevSprint AI — Developer Mock Interview & Code Evaluation Simulator
 
-HireMind is a full-stack AI-powered mock technical and behavioral interview platform. It features custom company personas (Google, Amazon, Microsoft, Meta), a live code editor with asymptotic complexity analysis ($O(N)$), multi-turn context memory, and automated resume skill gap analysis.
+DevSprint AI is a full-stack AI-powered mock technical and behavioral interview platform. It features custom company personas (Google, Amazon, Microsoft, Meta), a live code editor with asymptotic complexity analysis ($O(N)$), multi-turn context memory, and automated resume skill gap analysis.
 
 ---
 
@@ -30,7 +30,7 @@ HireMind is a full-stack AI-powered mock technical and behavioral interview plat
    - `GEMINI_API_KEY`: Your API Key from [Google AI Studio](https://aistudio.google.com)
    - `SECRET_KEY`: Any random 32-character string
    - `CORS_ORIGINS`: `https://your-frontend.vercel.app`
-5. Click **Create Web Service**. Render will give you a backend URL (e.g. `https://hiremind-backend.onrender.com`).
+5. Click **Create Web Service**. Render will give you a backend URL (e.g. `https://devsprint-backend.onrender.com`).
 
 ---
 
@@ -42,8 +42,8 @@ HireMind is a full-stack AI-powered mock technical and behavioral interview plat
    - **Framework Preset**: Vite
    - **Root Directory**: `frontend`
 4. Add **Environment Variable** in Vercel:
-   - `VITE_API_BASE_URL`: `https://hiremind-backend.onrender.com/api` *(your Render backend URL + `/api`)*
-5. Click **Deploy**. Vercel will give you a live website URL (e.g. `https://hiremind.vercel.app`).
+   - `VITE_API_BASE_URL`: `https://devsprint-backend.onrender.com/api` *(your Render backend URL + `/api`)*
+5. Click **Deploy**. Vercel will give you a live website URL (e.g. `https://devsprint.vercel.app`).
 
 ---
 

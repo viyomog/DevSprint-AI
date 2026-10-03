@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./hiremind.db")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./devsprint.db")
 
 # Fix SQLAlchemy 2.0 postgres:// compatibility
 if DATABASE_URL.startswith("postgres://"):

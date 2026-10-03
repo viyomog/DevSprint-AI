@@ -6,11 +6,11 @@ BASE_URL = "http://localhost:8000/api"
 
 def run_e2e_tests():
     print("=" * 60)
-    print("STARTING HIREMIND END-TO-END AUTOMATED VERIFICATION")
+    print("STARTING DEVSPRINT END-TO-END AUTOMATED VERIFICATION")
     print("=" * 60)
 
     # 1. Test User Registration
-    test_email = f"candidate_{int(time.time())}@hiremind.ai"
+    test_email = f"candidate_{int(time.time())}@devsprint.ai"
     test_password = "SecurePassword123!"
     
     print("\n[1/8] Testing User Registration...")
@@ -118,7 +118,7 @@ def run_e2e_tests():
     print(f"Final Report Generated! Overall Score: {rep['overall_score']}/10 | Recommendation: {rep['hiring_recommendation']}")
 
     print("\n" + "=" * 60)
-    print("ALL HIREMIND BACKEND & AI ENDPOINTS PASSED 100% SUCCESSFULLY!")
+    print("ALL DEVSPRINT BACKEND & AI ENDPOINTS PASSED 100% SUCCESSFULLY!")
     print("=" * 60)
 
 if __name__ == "__main__":

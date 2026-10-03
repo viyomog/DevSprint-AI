@@ -80,7 +80,7 @@ export const LoginPage: React.FC = () => {
                 type="email"
                 required
                 className="hm-input"
-                placeholder="candidate@hiremind.ai"
+                placeholder="candidate@devsprint.ai"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 style={{ paddingLeft: '2.5rem' }}

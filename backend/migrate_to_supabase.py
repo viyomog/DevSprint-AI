@@ -6,8 +6,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def migrate():
-    print("Connecting to local hiremind.db...")
-    sqlite_conn = sqlite3.connect("hiremind.db")
+    db_file = "devsprint.db" if os.path.exists("devsprint.db") else "hiremind.db"
+    print(f"Connecting to local {db_file}...")
+    sqlite_conn = sqlite3.connect(db_file)
     sqlite_conn.row_factory = sqlite3.Row
     s_cursor = sqlite_conn.cursor()
 

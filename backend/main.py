@@ -13,7 +13,7 @@ import routers.resume as resume_router
 import routers.interviews as interviews_router
 
 app = FastAPI(
-    title="HireMind API",
+    title="DevSprint API",
     description="AI Interview Simulator Backend API with Supabase PostgreSQL & Rate Limiting",
     version="1.0.0"
 )
@@ -77,7 +77,7 @@ app.include_router(interviews_router.router)
 def root():
     return {
         "status": "online",
-        "app": "HireMind AI Interview Simulator API",
+        "app": "DevSprint AI Developer Interview Simulator API",
         "version": "1.0.0",
         "docs": "/docs",
         "database": "Supabase PostgreSQL",

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Brain, LayoutDashboard, FileText, PlayCircle, LogOut, User as UserIcon } from 'lucide-react';
+import { Terminal, LayoutDashboard, FileText, PlayCircle, LogOut, User as UserIcon } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
@@ -43,10 +43,11 @@ export const Navbar: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <Brain size={22} color="var(--primary)" />
+            <Terminal size={22} color="var(--primary)" />
           </div>
-          <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
-            Hire<span style={{ color: 'var(--primary)' }}>Mind</span>
+          <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+            <span>Dev<span style={{ color: 'var(--primary)' }}>Sprint</span></span>
+            <span style={{ fontSize: '0.72rem', padding: '0.1rem 0.4rem', background: 'rgba(16, 185, 129, 0.18)', color: 'var(--primary)', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.35)', fontWeight: 700, letterSpacing: '0.04em' }}>AI</span>
           </span>
         </Link>
 

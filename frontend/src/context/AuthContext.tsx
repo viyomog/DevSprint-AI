@@ -21,7 +21,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(localStorage.getItem('hiremind_token'));
+  const [token, setToken] = useState<string | null>(localStorage.getItem('devsprint_token') || localStorage.getItem('hiremind_token'));
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
-    localStorage.setItem('hiremind_token', res.access_token);
+    localStorage.setItem('devsprint_token', res.access_token);
     setToken(res.access_token);
     setUser(res.user);
   };
@@ -54,12 +54,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       method: 'POST',
       body: JSON.stringify({ full_name, email, password, target_role }),
     });
-    localStorage.setItem('hiremind_token', res.access_token);
+    localStorage.setItem('devsprint_token', res.access_token);
     setToken(res.access_token);
     setUser(res.user);
   };
 
   const logout = () => {
+    localStorage.removeItem('devsprint_token');
     localStorage.removeItem('hiremind_token');
     setToken(null);
     setUser(null);

@@ -77,7 +77,7 @@ export const ResumeUploadPage: React.FC = () => {
       const formData = new FormData();
       formData.append('file', file);
 
-      const token = localStorage.getItem('hiremind_token');
+      const token = localStorage.getItem('devsprint_token') || localStorage.getItem('hiremind_token');
       const API_BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || 'http://localhost:8000/api';
 
       const response = await fetch(`${API_BASE_URL}/resume/upload`, {

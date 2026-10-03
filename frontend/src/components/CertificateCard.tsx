@@ -19,8 +19,8 @@ export const CertificateCard: React.FC<CertificateProps> = ({
   certificateId
 }) => {
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(`https://hiremind.ai/verify/${certificateId}`);
-    alert(`Certificate Verification Link copied!\nhttps://hiremind.ai/verify/${certificateId}`);
+    navigator.clipboard.writeText(`https://devsprint.ai/verify/${certificateId}`);
+    alert(`Certificate Verification Link copied!\nhttps://devsprint.ai/verify/${certificateId}`);
   };
 
   const handlePrintCertificate = () => {
@@ -58,7 +58,7 @@ export const CertificateCard: React.FC<CertificateProps> = ({
             <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--primary)', fontWeight: 800 }}>
               Official Verified Credential
             </span>
-            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, margin: 0 }}>HireMind AI Placement Certificate</h2>
+            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, margin: 0 }}>DevSprint AI Placement Certificate</h2>
           </div>
         </div>
 
@@ -116,7 +116,7 @@ export const CertificateCard: React.FC<CertificateProps> = ({
       {/* Footer Controls (Hidden when printing) */}
       <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.25rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.82rem', color: 'var(--success)' }}>
-          <CheckCircle2 size={16} /> Cryptographically Signed & Verified by HireMind AI Engine
+          <CheckCircle2 size={16} /> Cryptographically Signed & Verified by DevSprint AI Engine
         </div>
 
         <div style={{ display: 'flex', gap: '0.75rem' }}>

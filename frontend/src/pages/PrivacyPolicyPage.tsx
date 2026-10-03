@@ -10,7 +10,7 @@ export const PrivacyPolicyPage: React.FC = () => {
         </div>
         <h1 style={{ fontSize: '2.5rem', fontWeight: 800 }}>Privacy Policy & Data Handling</h1>
         <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem', fontSize: '1.05rem', lineHeight: 1.6 }}>
-          HireMind is built with strict privacy-first principles. We are fully transparent about what data is processed, how it is stored, and how AI services interact with your information.
+          DevSprint AI is built with strict privacy-first principles. We are fully transparent about what data is processed, how it is stored, and how AI services interact with your information.
         </p>
       </div>
 

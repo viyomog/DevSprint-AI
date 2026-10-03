@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Brain, ShieldCheck, Lock, Cpu } from 'lucide-react';
+import { Terminal, ShieldCheck, Lock, Cpu } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -29,10 +29,11 @@ export const Footer: React.FC = () => {
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <Brain size={18} color="#000000" />
+                <Terminal size={18} color="#000000" />
               </div>
-              <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
-                Hire<span style={{ color: 'var(--primary)' }}>Mind</span>
+              <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                <span>Dev<span style={{ color: 'var(--primary)' }}>Sprint</span></span>
+                <span style={{ fontSize: '0.7rem', padding: '0.1rem 0.35rem', background: 'rgba(16, 185, 129, 0.18)', color: 'var(--primary)', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.35)', fontWeight: 700 }}>AI</span>
               </span>
             </Link>
 
@@ -97,7 +98,7 @@ export const Footer: React.FC = () => {
               <span className="hm-badge hm-badge-emerald" style={{ fontSize: '0.7rem' }}>Zero Data Monetization</span>
             </div>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '0.2rem', lineHeight: 1.5 }}>
-              HireMind strictly respects candidate privacy. Passwords are stored encrypted using bcrypt. Uploaded resumes and interview responses are processed securely via Google Gemini API solely for real-time question generation & scoring. We <strong>never sell or share</strong> candidate data with third parties.
+              DevSprint strictly respects candidate privacy. Passwords are stored encrypted using bcrypt. Uploaded resumes and interview responses are processed securely via Google Gemini API solely for real-time question generation & scoring. We <strong>never sell or share</strong> candidate data with third parties.
             </p>
           </div>
         </div>
@@ -115,7 +116,7 @@ export const Footer: React.FC = () => {
           color: 'var(--text-secondary)'
         }}>
           <div>
-            © {new Date().getFullYear()} HireMind. Built for real interview readiness & technical excellence.
+            © {new Date().getFullYear()} DevSprint AI. Built for real interview readiness & technical excellence.
           </div>
 
           <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
